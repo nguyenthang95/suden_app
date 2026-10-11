@@ -1,0 +1,110 @@
+<div class="image-uploader">
+  <!-- Upload Area -->
+  <label
+    class="upload-area"
+    [class.drag-over]="isDragOver"
+    [class.disabled]="disabled"
+    (dragover)="onDragOver($event)"
+    (dragleave)="onDragLeave($event)"
+    (drop)="onDrop($event)"
+  >
+    <input
+      type="file"
+      class="hidden-input"
+      [accept]="accept"
+      [multiple]="true"
+      [disabled]="disabled"
+      (change)="onFileInput($event)"
+    />
+
+    <div class="upload-icon">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8">
+        <path d="M12 16V4" />
+
+        <path d="M7 9l5-5 5 5" />
+
+        <path d="M5 20h14" />
+      </svg>
+    </div>
+
+    <div class="upload-title">{{ 'messages.imagesDropHere' | translate }}</div>
+
+    <div class="upload-description">
+      {{ 'messages.or' | translate }}
+      <span>{{ 'messages.browseFiles' | translate }}</span>
+    </div>
+
+    <div class="upload-info">
+      {{ 'messages.imageUploadInfo' | translate: { size: maxFileSizeMB, count: maxImages } }}
+    </div>
+  </label>
+
+  <!-- Image List -->
+  @if (images.length > 0) {
+    <div class="image-list">
+      @for (image of images; track image.id) {
+        <div
+          class="image-item"
+          [class.primary]="image.isPrimary"
+          draggable="true"
+          (dragstart)="onDragImageStart($event, image)"
+          (dragover)="$event.preventDefault()"
+          (drop)="onDropImage($event, image)"
+        >
+          <!-- Image -->
+          <div class="image-preview">
+            <img [src]="image.url" [alt]="image.fileName" />
+
+            @if (image.isPrimary) {
+              <span class="primary-badge">{{ 'messages.primary' | translate }}</span>
+            }
+          </div>
+
+          <!-- Actions -->
+          <div class="image-actions">
+            @if (!image.isPrimary) {
+              <button
+                type="button"
+                class="action-button"
+                [disabled]="disabled"
+                (click)="setPrimary(image)"
+              >
+                {{ 'messages.setPrimary' | translate }}
+              </button>
+            } @else {
+              <span class="primary-text"> ★ {{ 'messages.primary' | translate }}</span>
+            }
+
+            <button
+              type="button"
+              class="delete-button"
+              [disabled]="disabled"
+              (click)="removeImage(image)"
+              [attr.aria-label]="'messages.removeImage' | translate"
+            >
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <path d="M3 6h18" />
+                <path d="M8 6V4h8v2" />
+                <path d="M19 6l-1 14H6L5 6" />
+                <path d="M10 11v5" />
+                <path d="M14 11v5" />
+              </svg>
+            </button>
+          </div>
+
+          <!-- Drag indicator -->
+          <div class="drag-handle">⋮⋮</div>
+        </div>
+      }
+    </div>
+  }
+
+  <!-- Footer -->
+  <div class="uploader-footer">
+    <span>{{ 'messages.imagesCount' | translate: { count: images.length, max: maxImages } }}</span>
+
+    @if (images.length > 0) {
+      <span>{{ 'messages.dragImages' | translate }}</span>
+    }
+  </div>
+</div>

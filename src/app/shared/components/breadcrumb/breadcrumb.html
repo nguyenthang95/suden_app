@@ -1,0 +1,35 @@
+<nav
+  *ngIf="breadcrumbs$ | async as breadcrumbs"
+  [attr.aria-label]="'breadcrumb.navigation' | translate"
+  class="mb-5"
+>
+  <div class="breadcrumbs text-sm">
+    <ul>
+      <!-- Admin Home -->
+      <li>
+        <a
+          routerLink="/admin/dashboard"
+          class="text-base-content/60 hover:text-primary transition-colors"
+        >
+          {{ 'breadcrumb.dashboard' | translate }}
+        </a>
+      </li>
+      <!-- Current page -->
+      <li *ngFor="let breadcrumb of breadcrumbs; let last = last">
+        <!-- Parent breadcrumb -->
+        <ng-container *ngIf="!last">
+          <a
+            [routerLink]="breadcrumb.url"
+            class="text-base-content/60 hover:text-primary transition-colors"
+          >
+            {{ breadcrumb.label | translate }}
+          </a>
+        </ng-container>
+        <!-- Current breadcrumb -->
+        <span *ngIf="last" class="font-semibold text-base-content">
+          {{ breadcrumb.label | translate }}
+        </span>
+      </li>
+    </ul>
+  </div>
+</nav>

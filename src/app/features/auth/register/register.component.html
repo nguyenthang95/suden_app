@@ -1,0 +1,24 @@
+<div class="min-h-screen bg-slate-100 flex items-center justify-center p-4">
+  <form class="card p-8 w-full max-w-md" [formGroup]="form" (ngSubmit)="submit()">
+    <h1 class="text-3xl font-black">{{ 'auth.createAccount' | translate }}</h1>
+    <input
+      class="input mt-5"
+      [placeholder]="'checkout.fullName' | translate"
+      formControlName="name"
+    /><input
+      class="input mt-3"
+      [placeholder]="'auth.email' | translate"
+      formControlName="email"
+    /><input
+      class="input mt-3"
+      [placeholder]="'auth.password' | translate"
+      type="password"
+      formControlName="password"
+    />
+    <p *ngIf="error()" class="text-red-600 text-sm mt-2">{{ error() | translate }}</p>
+    <button class="btn btn-primary w-full mt-5">{{ 'auth.registerButton' | translate }}</button
+    ><a routerLink="/login" class="text-[#3f61a8] block mt-4">{{
+      'auth.backToLogin' | translate
+    }}</a>
+  </form>
+</div>

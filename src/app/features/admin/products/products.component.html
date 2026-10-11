@@ -1,0 +1,91 @@
+<div class="flex justify-between">
+  <h1 class="text-3xl font-black">{{ 'adminProduct.title' | translate }}</h1>
+  <button class="btn btn-primary" (click)="newProduct()">+ {{ 'common.add' | translate }}</button>
+</div>
+<div class="card p-4 mt-5">
+  <input
+    class="input"
+    [placeholder]="'adminProduct.searchPlaceholder' | translate"
+    [value]="search()"
+    (input)="search.set($any($event.target).value)"
+  />
+</div>
+<form *ngIf="editing() !== undefined" class="card p-5 mt-5" [formGroup]="form" (ngSubmit)="save()">
+  <div class="grid md:grid-cols-2 gap-3">
+    <input class="input" [placeholder]="'adminProduct.name' | translate" formControlName="name" />
+    <input class="input" [placeholder]="'adminProduct.sku' | translate" formControlName="sku" />
+    <select class="input" formControlName="categoryId">
+      <option value="">{{ 'adminProduct.category' | translate }}</option>
+      <option *ngFor="let c of cats()" [value]="c.id">{{ c.name }}</option>
+    </select>
+    <input
+      class="input"
+      type="number"
+      [placeholder]="'adminProduct.price' | translate"
+      formControlName="price"
+    />
+    <input
+      class="input"
+      type="number"
+      [placeholder]="'adminProduct.salePrice' | translate"
+      formControlName="salePrice"
+    />
+    <input
+      class="input"
+      type="number"
+      [placeholder]="'adminProduct.stock' | translate"
+      formControlName="stock"
+    />
+    <textarea
+      class="input md:col-span-2"
+      [placeholder]="'adminProduct.description' | translate"
+      formControlName="description"
+    ></textarea>
+    <app-image-uploader
+      class="md:col-span-2"
+      [images]="images"
+      [maxImages]="10"
+      [maxFileSizeMB]="5"
+      (imagesChange)="onImagesChange($event)"
+      (imageRemoved)="onImageRemoved($event)"
+      (primaryChanged)="onPrimaryChanged($event)"
+      (validationError)="onImageError($event)"
+    />
+  </div>
+  <div class="flex gap-2 items-center md:col-span-2">
+    <button class="btn btn-primary">{{ 'common.save' | translate }}</button>
+    <button type="button" class="btn" (click)="editing.set(undefined)">
+      {{ 'common.cancel' | translate }}
+    </button>
+  </div>
+</form>
+
+<div class="card mt-6 overflow-x-auto">
+  <table class="w-full text-sm">
+    <tr class="border-b text-left">
+      <th class="p-4">{{ 'adminProduct.product' | translate }}</th>
+      <th>{{ 'adminProduct.sku' | translate }}</th>
+      <th>{{ 'adminProduct.category' | translate }}</th>
+      <th>{{ 'adminProduct.price' | translate }}</th>
+      <th>{{ 'adminProduct.stock' | translate }}</th>
+      <th>{{ 'common.status' | translate }}</th>
+      <th>{{ 'common.actions' | translate }}</th>
+    </tr>
+    <tr *ngFor="let p of filtered()" class="border-b">
+      <td class="p-4 font-bold">{{ p.name }}</td>
+      <td>{{ p.sku }}</td>
+      <td>{{ p.categoryName }}</td>
+      <td>{{ (p.salePrice ?? p.price).toLocaleString('vi-VN') }} ₫</td>
+      <td>{{ p.stock }}</td>
+      <td>{{ 'common.' + p.status.toLowerCase() | translate }}</td>
+      <td class="space-x-2">
+        <button class="text-[#3f61a8]" (click)="edit(p)">{{ 'common.edit' | translate }}</button
+        ><button (click)="service.toggleStatus(p.id)">
+          {{ 'adminProduct.toggle' | translate }}</button
+        ><button class="text-red-600" (click)="service.deleteProduct(p.id)">
+          {{ 'common.delete' | translate }}
+        </button>
+      </td>
+    </tr>
+  </table>
+</div>

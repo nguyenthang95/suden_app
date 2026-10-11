@@ -1,0 +1,48 @@
+<section class="bg-gradient-to-r from-blue-100 to-amber-50">
+  <div class="container-page py-16 md:py-24 flex items-center gap-10">
+    <div class="flex-1">
+      <span class="text-[#3f61a8] font-bold">{{ 'home.petEssentials' | translate }}</span>
+      <h1 class="text-4xl md:text-6xl font-black leading-tight mt-3">
+        {{ 'home.heroTitle' | translate }}
+      </h1>
+      <p class="text-slate-600 mt-5 max-w-xl">
+        {{ 'home.heroDescription' | translate }}
+      </p>
+      <a routerLink="/products" class="btn btn-primary inline-block mt-6">{{
+        'home.shopProducts' | translate
+      }}</a>
+    </div>
+    <div class="text-8xl md:text-[150px]">🐶</div>
+  </div>
+</section>
+<div class="container-page">
+  <section class="py-12">
+    <h2 class="text-2xl font-black mb-5">{{ 'home.featuredCategories' | translate }}</h2>
+    <div class="grid grid-cols-2 md:grid-cols-4 gap-4">
+      <app-category-card *ngFor="let c of roots()" [category]="c" />
+    </div>
+  </section>
+  <section class="py-8">
+    <div class="flex justify-between items-center mb-5">
+      <h2 class="text-2xl font-black">{{ 'home.featuredProducts' | translate }}</h2>
+      <a routerLink="/products" class="text-[#3f61a8]">{{ 'home.viewAll' | translate }}</a>
+    </div>
+    <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-5">
+      <app-product-card *ngFor="let p of featured()" [product]="p" />
+    </div>
+  </section>
+  <section class="py-12 grid md:grid-cols-3 gap-5">
+    <div class="card p-6">
+      <b>{{ 'home.fastDelivery' | translate }}</b>
+      <p class="text-slate-500">{{ 'home.fastDeliveryDescription' | translate }}</p>
+    </div>
+    <div class="card p-6">
+      <b>{{ 'home.flexiblePayment' | translate }}</b>
+      <p class="text-slate-500">{{ 'home.flexiblePaymentDescription' | translate }}</p>
+    </div>
+    <div class="card p-6">
+      <b>{{ 'home.apiReady' | translate }}</b>
+      <p class="text-slate-500">{{ 'home.apiReadyDescription' | translate }}</p>
+    </div>
+  </section>
+</div>

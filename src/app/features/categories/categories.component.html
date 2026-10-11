@@ -1,0 +1,10 @@
+<div class="container-page py-10">
+  <h1 class="text-3xl font-black">{{ 'category.title' | translate }}</h1>
+  <p class="text-slate-500 mb-8">{{ 'category.browseDescription' | translate }}</p>
+  <div *ngFor="let root of roots()" class="mb-10">
+    <h2 class="text-xl font-bold mb-4">{{ root.name }}</h2>
+    <div class="grid grid-cols-2 md:grid-cols-4 gap-4">
+      <app-category-card *ngFor="let c of children(root.id)" [category]="c" />
+    </div>
+  </div>
+</div>

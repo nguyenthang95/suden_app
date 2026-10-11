@@ -1,0 +1,21 @@
+<div class="min-h-screen bg-slate-100 flex items-center justify-center p-4">
+  <form class="card p-8 w-full max-w-md" [formGroup]="form" (ngSubmit)="submit()">
+    <h1 class="text-3xl font-black">{{ 'auth.welcomeBack' | translate }}</h1>
+    <p class="text-slate-500 mb-6">{{ 'auth.loginToContinue' | translate }}</p>
+    <label>{{ 'auth.email' | translate }}</label
+    ><input class="input my-2" formControlName="email" type="email" /><label>{{
+      'auth.password' | translate
+    }}</label
+    ><input class="input my-2" formControlName="password" type="password" />
+    <p *ngIf="error()" class="text-red-600 text-sm">{{ error() | translate }}</p>
+    <button class="btn btn-primary w-full mt-4" [disabled]="form.invalid">
+      {{ 'auth.loginButton' | translate }}
+    </button>
+    <div class="text-sm text-slate-500 mt-5">
+      {{ 'auth.demoAdmin' | translate }}<br />{{ 'auth.demoCustomer' | translate }}
+    </div>
+    <a routerLink="/register" class="text-[#3f61a8] block mt-4">{{
+      'auth.createAccount' | translate
+    }}</a>
+  </form>
+</div>

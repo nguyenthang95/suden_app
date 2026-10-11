@@ -1,0 +1,36 @@
+<h1 class="text-3xl font-black">{{ 'admin.dashboard' | translate }}</h1>
+<div class="grid grid-cols-2 lg:grid-cols-4 gap-4 mt-6">
+  <div class="card p-5">
+    <span>{{ 'admin.revenue' | translate }}</span
+    ><b class="block text-2xl mt-2">{{ stats().revenue.toLocaleString('vi-VN') }} ₫</b>
+  </div>
+  <div class="card p-5">
+    <span>{{ 'admin.orders' | translate }}</span
+    ><b class="block text-2xl mt-2">{{ stats().orders }}</b>
+  </div>
+  <div class="card p-5">
+    <span>{{ 'admin.products' | translate }}</span
+    ><b class="block text-2xl mt-2">{{ stats().products }}</b>
+  </div>
+  <div class="card p-5">
+    <span>{{ 'admin.customers' | translate }}</span
+    ><b class="block text-2xl mt-2">{{ stats().customers }}</b>
+  </div>
+</div>
+<section class="card mt-6 overflow-x-auto">
+  <h2 class="p-5 font-black">{{ 'order.recent' | translate }}</h2>
+  <table class="w-full text-sm">
+    <tr class="border-b text-left">
+      <th class="p-4">{{ 'admin.order' | translate }}</th>
+      <th>{{ 'order.customer' | translate }}</th>
+      <th>{{ 'order.total' | translate }}</th>
+      <th>{{ 'common.status' | translate }}</th>
+    </tr>
+    <tr *ngFor="let o of orders.orders().slice(0, 8)" class="border-b">
+      <td class="p-4">{{ o.orderCode }}</td>
+      <td>{{ o.customerName }}</td>
+      <td>{{ o.total.toLocaleString('vi-VN') }} ₫</td>
+      <td>{{ 'order.' + o.status.toLowerCase() | translate }}</td>
+    </tr>
+  </table>
+</section>

@@ -1,0 +1,2 @@
+import {Customer} from '../models/models';
+export const CUSTOMERS:Customer[]=Array.from({length:12},(_,i)=>({id:`c-${i+1}`,name:['Nguyen An','Tran Linh','Le Minh','Pham Hoa','Vo Nam','Bui Trang','Do Khoa','Dang Mai','Hoang Son','Phan Vy','Mai Anh','Vu Long'][i],email:`customer${i+1}@example.com`,phone:`090${String(1000000+i*3711).slice(0,7)}`,totalOrders:2+(i%7),totalSpent:450000+(i*237000),status:i===10?'INACTIVE':'ACTIVE',createdAt:`2026-0${(i%9)+1}-12T08:00:00Z`}));

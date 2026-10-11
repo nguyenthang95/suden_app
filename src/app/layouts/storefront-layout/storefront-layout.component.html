@@ -1,0 +1,241 @@
+<header class="sticky top-0 z-30 header-container border-b">
+  <div class="container-page flex items-center gap-6 h-16">
+    <!-- Logo -->
+    <a routerLink="/" class="text-2xl font-black text-[#3f61a8]"> SUDEN PET </a>
+    <!-- Desktop Navigation -->
+    <nav class="hidden md:flex gap-5 text-sm font-semibold text-[18px]">
+      <a routerLink="/">
+        {{ 'header.home' | translate }}
+      </a>
+
+      <a routerLink="/categories">
+        {{ 'header.categories' | translate }}
+      </a>
+
+      <a routerLink="/products">
+        {{ 'header.products' | translate }}
+      </a>
+    </nav>
+
+    <div class="flex-1"></div>
+
+    <!-- Search -->
+    <form class="hidden sm:block w-64" (submit)="search($event)">
+      <input
+        class="input"
+        [placeholder]="'common.searchPlaceholder' | translate"
+        [value]="keyword()"
+        (input)="keyword.set($any($event.target).value)"
+      />
+    </form>
+
+    <!-- Language -->
+    <div class="hidden sm:flex items-center gap-1 border rounded-lg p-1">
+      <button
+        type="button"
+        class="px-2 py-1 text-xs rounded-md transition"
+        [class.bg-[#3f61a8]]="language === 'vi'"
+        [class.text-white]="language === 'vi'"
+        [class.text-gray-600]="language !== 'vi'"
+        (click)="changeLanguage('vi')"
+      >
+        VI
+      </button>
+
+      <button
+        type="button"
+        class="px-2 py-1 text-xs rounded-md transition"
+        [class.bg-[#3f61a8]]="language === 'en'"
+        [class.text-white]="language === 'en'"
+        [class.text-gray-600]="language !== 'en'"
+        (click)="changeLanguage('en')"
+      >
+        EN
+      </button>
+    </div>
+
+    <!-- Account -->
+    <a routerLink="/account" class="hidden sm:block text-sm font-semibold text-[18px]">
+      {{ 'header.account' | translate }}
+    </a>
+
+    <!-- Cart -->
+    <a routerLink="/cart" class="btn bg-[#3f61a8] text-white">
+      {{ 'header.cart' | translate }}
+      {{ cartCount }}
+    </a>
+    <!-- Mobile menu -->
+    <button type="button" class="md:hidden" (click)="menu.set(!menu())">☰</button>
+  </div>
+
+  <!-- Mobile menu -->
+  <div *ngIf="menu()" class="md:hidden border-t p-4 space-y-3">
+    <a class="block" routerLink="/">
+      {{ 'header.home' | translate }}
+    </a>
+
+    <a class="block" routerLink="/categories">
+      {{ 'header.categories' | translate }}
+    </a>
+
+    <a class="block" routerLink="/products">
+      {{ 'header.products' | translate }}
+    </a>
+
+    <a class="block" routerLink="/account">
+      {{ 'header.account' | translate }}
+    </a>
+
+    <!-- Mobile language -->
+    <div class="pt-3 border-t flex items-center gap-2">
+      <span class="text-sm text-gray-500"> {{ 'common.language' | translate }}: </span>
+
+      <button
+        type="button"
+        class="px-3 py-1 text-sm rounded-md border"
+        [class.bg-blue-600]="language === 'vi'"
+        [class.text-white]="language === 'vi'"
+        (click)="changeLanguage('vi')"
+      >
+        🇻🇳 VI
+      </button>
+
+      <button
+        type="button"
+        class="px-3 py-1 text-sm rounded-md border"
+        [class.bg-blue-600]="language === 'en'"
+        [class.text-white]="language === 'en'"
+        (click)="changeLanguage('en')"
+      >
+        🇬🇧 EN
+      </button>
+    </div>
+  </div>
+</header>
+<main>
+  <!-- <app-breadcrumb></app-breadcrumb> -->
+  <router-outlet />
+</main>
+<footer class="footer-container">
+  <div class="container mx-auto px-4 py-10">
+    <div class="grid grid-cols-1 gap-8 sm:grid-cols-2 lg:grid-cols-4">
+      <!-- Brand -->
+      <div>
+        <h2 class="text-xl font-bold mb-3">SUDEN PET</h2>
+        <p class="text-sm text-neutral-content/70 leading-6">
+          {{ 'footer.description' | translate }}
+        </p>
+        <div class="flex gap-3 mt-5">
+          <a href="#" class="btn btn-circle btn-sm btn-ghost" aria-label="Facebook"> f </a>
+
+          <a href="#" class="btn btn-circle btn-sm btn-ghost" aria-label="Instagram"> ◎ </a>
+
+          <a href="#" class="btn btn-circle btn-sm btn-ghost" aria-label="TikTok"> ♪ </a>
+        </div>
+      </div>
+
+      <!-- Shop -->
+      <div>
+        <h3 class="font-semibold text-base mb-4">{{ 'footer.shop' | translate }}</h3>
+
+        <ul class="space-y-3 text-sm text-neutral-content/70">
+          <li>
+            <a routerLink="/" class="hover:text-white transition-colors">{{
+              'footer.home' | translate
+            }}</a>
+          </li>
+
+          <li>
+            <a routerLink="/categories" class="hover:text-white transition-colors">{{
+              'footer.categories' | translate
+            }}</a>
+          </li>
+
+          <li>
+            <a routerLink="/products" class="hover:text-white transition-colors">{{
+              'footer.products' | translate
+            }}</a>
+          </li>
+
+          <li>
+            <a routerLink="/cart" class="hover:text-white transition-colors">{{
+              'footer.cart' | translate
+            }}</a>
+          </li>
+        </ul>
+      </div>
+
+      <!-- Customer service -->
+      <div>
+        <h3 class="font-semibold text-base mb-4">{{ 'footer.customerService' | translate }}</h3>
+
+        <ul class="space-y-3 text-sm text-neutral-content/70">
+          <li>
+            <a href="#" class="hover:text-white transition-colors">{{
+              'footer.shippingPolicy' | translate
+            }}</a>
+          </li>
+
+          <li>
+            <a href="#" class="hover:text-white transition-colors">{{
+              'footer.returnPolicy' | translate
+            }}</a>
+          </li>
+
+          <li>
+            <a href="#" class="hover:text-white transition-colors">{{
+              'footer.privacyPolicy' | translate
+            }}</a>
+          </li>
+
+          <li>
+            <a href="#" class="hover:text-white transition-colors">{{
+              'footer.terms' | translate
+            }}</a>
+          </li>
+        </ul>
+      </div>
+
+      <!-- Contact -->
+      <div>
+        <h3 class="font-semibold text-base mb-4">{{ 'footer.contact' | translate }}</h3>
+
+        <ul class="space-y-4 text-sm text-neutral-content/70">
+          <li class="flex gap-3">
+            <span>📍</span>
+            <span>
+              {{ 'footer.address' | translate }}
+            </span>
+          </li>
+
+          <li class="flex gap-3">
+            <span>📞</span>
+            <a href="tel:0123456789" class="hover:text-white transition-colors"> 0123 456 789 </a>
+          </li>
+
+          <li class="flex gap-3">
+            <span>✉️</span>
+            <a href="mailto:support@example.com" class="hover:text-white transition-colors">
+              support@example.com
+            </a>
+          </li>
+        </ul>
+      </div>
+    </div>
+
+    <!-- Bottom -->
+    <div
+      class="mt-10 pt-6 border-t border-neutral-content/10 flex flex-col gap-3 sm:flex-row sm:items-center sm:justify-between"
+    >
+      <p class="text-sm text-neutral-content/60">
+        {{ 'footer.copyright' | translate: { year: currentYear } }}
+      </p>
+
+      <div class="flex items-center gap-4 text-sm text-neutral-content/60">
+        <span>{{ 'footer.securePaymentLabel' | translate }}</span>
+        <span>•</span>
+        <span>{{ 'footer.privacyLabel' | translate }}</span>
+      </div>
+    </div>
+  </div>
+</footer>

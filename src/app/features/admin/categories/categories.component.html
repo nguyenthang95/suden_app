@@ -1,0 +1,61 @@
+<div class="flex justify-between items-center">
+  <h1 class="text-3xl font-black">{{ 'adminCategory.title' | translate }}</h1>
+  <button
+    class="btn btn-primary"
+    (click)="
+      editing.set(null);
+      form.reset({ name: '', slug: '', parentId: null, description: '', status: 'ACTIVE' })
+    "
+  >
+    + {{ 'common.add' | translate }}
+  </button>
+</div>
+<form
+  *ngIf="formVisible()"
+  class="card p-5 mt-5 grid md:grid-cols-2 gap-3"
+  [formGroup]="form"
+  (ngSubmit)="save()"
+>
+  <input
+    class="input"
+    [placeholder]="'adminCategory.name' | translate"
+    formControlName="name"
+  /><input
+    class="input"
+    [placeholder]="'adminCategory.slug' | translate"
+    formControlName="slug"
+  /><select class="input" formControlName="parentId">
+    <option [ngValue]="null">{{ 'adminCategory.noParent' | translate }}</option>
+    <option *ngFor="let c of service.categories()" [ngValue]="c.id">{{ c.name }}</option></select
+  ><input
+    class="input"
+    [placeholder]="'adminCategory.description' | translate"
+    formControlName="description"
+  /><button class="btn btn-primary">{{ 'common.save' | translate }}</button
+  ><button type="button" class="btn" (click)="formVisible.set(false)">
+    {{ 'common.cancel' | translate }}
+  </button>
+</form>
+<div class="card mt-6 overflow-x-auto">
+  <table class="w-full text-sm">
+    <tr class="border-b text-left">
+      <th class="p-4">{{ 'adminCategory.name' | translate }}</th>
+      <th>{{ 'adminCategory.parent' | translate }}</th>
+      <th>{{ 'common.status' | translate }}</th>
+      <th>{{ 'common.actions' | translate }}</th>
+    </tr>
+    <tr *ngFor="let c of service.categories()" class="border-b">
+      <td class="p-4">{{ c.name }}</td>
+      <td>{{ service.getCategoryById(c.parentId ?? '')?.name || '—' }}</td>
+      <td>{{ 'common.' + c.status.toLowerCase() | translate }}</td>
+      <td class="space-x-2">
+        <button class="text-[#3f61a8]" (click)="edit(c)">{{ 'common.edit' | translate }}</button
+        ><button (click)="service.toggleStatus(c.id)">
+          {{
+            (c.status === 'ACTIVE' ? 'common.deactivate' : 'common.activate') | translate
+          }}</button
+        ><button class="text-red-600" (click)="remove(c)">{{ 'common.delete' | translate }}</button>
+      </td>
+    </tr>
+  </table>
+</div>

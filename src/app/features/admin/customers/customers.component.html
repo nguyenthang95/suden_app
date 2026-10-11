@@ -1,0 +1,35 @@
+<h1 class="text-3xl font-black">{{ 'adminCustomer.title' | translate }}</h1>
+<div class="card p-4 mt-5">
+  <input
+    class="input"
+    [placeholder]="'adminCustomer.searchPlaceholder' | translate"
+    [value]="search()"
+    (input)="search.set($any($event.target).value)"
+  />
+</div>
+<div class="card mt-6 overflow-x-auto">
+  <table class="w-full text-sm">
+    <tr class="border-b text-left">
+      <th class="p-4">{{ 'adminCustomer.name' | translate }}</th>
+      <th>{{ 'adminCustomer.email' | translate }}</th>
+      <th>{{ 'adminCustomer.phone' | translate }}</th>
+      <th>{{ 'adminCustomer.orders' | translate }}</th>
+      <th>{{ 'adminCustomer.totalSpent' | translate }}</th>
+      <th>{{ 'common.status' | translate }}</th>
+      <th>{{ 'common.actions' | translate }}</th>
+    </tr>
+    <tr *ngFor="let c of filtered()" class="border-b">
+      <td class="p-4">{{ c.name }}</td>
+      <td>{{ c.email }}</td>
+      <td>{{ c.phone }}</td>
+      <td>{{ c.totalOrders }}</td>
+      <td>{{ c.totalSpent.toLocaleString('vi-VN') }} ₫</td>
+      <td>{{ 'common.' + c.status.toLowerCase() | translate }}</td>
+      <td>
+        <button (click)="service.toggleStatus(c.id)">
+          {{ (c.status === 'ACTIVE' ? 'common.deactivate' : 'common.activate') | translate }}
+        </button>
+      </td>
+    </tr>
+  </table>
+</div>

@@ -1,0 +1,12 @@
+<a
+  class="card block overflow-hidden hover:-translate-y-1 transition"
+  [routerLink]="['/products']"
+  [queryParams]="{ category: category().id }"
+  ><img class="w-full h-32 object-cover" [src]="category().imageUrl" [alt]="category().name" />
+  <div class="p-4">
+    <b>{{ category().name }}</b>
+    <div class="text-xs text-slate-500 mt-1">
+      {{ 'category.productsCount' | translate: { count: category().productCount ?? 0 } }}
+    </div>
+  </div></a
+>

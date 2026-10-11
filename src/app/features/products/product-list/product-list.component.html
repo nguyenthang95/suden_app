@@ -1,0 +1,61 @@
+<div class="container-page py-10">
+  <div class="flex flex-col md:flex-row gap-4 md:items-end mb-8">
+    <div class="flex-1">
+      <h1 class="text-3xl font-black whitespace-nowrap">{{ 'product.title' | translate }}</h1>
+      <p class="text-slate-500">
+        {{ 'product.productsFound' | translate: { count: result().total } }}
+      </p>
+    </div>
+    <input
+      class="input md:w-72"
+      [placeholder]="'common.searchPlaceholder' | translate"
+      [value]="search()"
+      (input)="update('search', $any($event.target).value)"
+    /><select
+      class="input md:w-56"
+      [value]="sort()"
+      (change)="update('sort', $any($event.target).value)"
+    >
+      <option value="featured">{{ 'product.featured' | translate }}</option>
+      <option value="newest">{{ 'product.newest' | translate }}</option>
+      <option value="price_asc">{{ 'product.priceLowHigh' | translate }}</option>
+      <option value="price_desc">{{ 'product.priceHighLow' | translate }}</option>
+      <option value="name_asc">{{ 'product.nameAZ' | translate }}</option>
+    </select>
+  </div>
+  <div class="flex gap-2 overflow-x-auto mb-6">
+    <button class="btn" [class.btn-primary]="!category()" (click)="update('category', '')">
+      {{ 'common.all' | translate }}</button
+    ><button
+      *ngFor="let c of categories()"
+      class="btn"
+      [class.btn-primary]="category() === c.id"
+      (click)="update('category', c.id)"
+    >
+      {{ c.name }}
+    </button>
+  </div>
+  <div
+    *ngIf="result().items.length; else empty"
+    class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-5"
+  >
+    <app-product-card *ngFor="let p of result().items" [product]="p" />
+  </div>
+  <ng-template #empty
+    ><div class="card p-16 text-center text-slate-500">
+      {{ 'product.noProducts' | translate }}
+    </div></ng-template
+  >
+  <div class="flex justify-center gap-2 mt-8">
+    <button class="btn btn-secondary" [disabled]="page() <= 1" (click)="go(page() - 1)">
+      {{ 'messages.previous' | translate }}</button
+    ><span class="px-4 py-2">{{ 'common.page' | translate: { page: page() } }}</span
+    ><button
+      class="btn btn-secondary"
+      [disabled]="page() * 12 >= result().total"
+      (click)="go(page() + 1)"
+    >
+      {{ 'messages.next' | translate }}
+    </button>
+  </div>
+</div>

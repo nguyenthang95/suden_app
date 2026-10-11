@@ -1,0 +1,43 @@
+<h1 class="text-3xl font-black">{{ 'adminOrder.title' | translate }}</h1>
+<div class="card mt-6 overflow-x-auto">
+  <table class="w-full text-sm">
+    <tr class="border-b text-left">
+      <th class="p-4">{{ 'adminOrder.orderCode' | translate }}</th>
+      <th>{{ 'adminOrder.customer' | translate }}</th>
+      <th>{{ 'adminOrder.date' | translate }}</th>
+      <th>{{ 'adminOrder.total' | translate }}</th>
+      <th>{{ 'admin.payment' | translate }}</th>
+      <th>{{ 'adminOrder.status' | translate }}</th>
+      <th>{{ 'adminOrder.actions' | translate }}</th>
+    </tr>
+    <tr *ngFor="let o of service.orders()" class="border-b">
+      <td class="p-4">{{ o.orderCode }}</td>
+      <td>{{ o.customerName }}</td>
+      <td>{{ o.createdAt | date }}</td>
+      <td>{{ o.total.toLocaleString('vi-VN') }} ₫</td>
+      <td>
+        {{ (o.paymentMethod === 'COD' ? 'checkout.cod' : 'checkout.bankTransfer') | translate }}
+      </td>
+      <td>{{ 'order.' + o.status.toLowerCase() | translate }}</td>
+      <td>
+        <select class="input" (change)="change(o.id, $any($event.target).value)">
+          <option [selected]="o.status === 'PENDING'" value="PENDING">
+            {{ 'order.pending' | translate }}
+          </option>
+          <option [selected]="o.status === 'CONFIRMED'" value="CONFIRMED">
+            {{ 'order.confirmed' | translate }}
+          </option>
+          <option [selected]="o.status === 'SHIPPING'" value="SHIPPING">
+            {{ 'order.shipping' | translate }}
+          </option>
+          <option [selected]="o.status === 'COMPLETED'" value="COMPLETED">
+            {{ 'order.completed' | translate }}
+          </option>
+          <option [selected]="o.status === 'CANCELLED'" value="CANCELLED">
+            {{ 'order.cancelled' | translate }}
+          </option>
+        </select>
+      </td>
+    </tr>
+  </table>
+</div>

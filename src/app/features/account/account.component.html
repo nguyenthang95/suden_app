@@ -1,0 +1,51 @@
+<div class="container-page py-10">
+  <div class="flex justify-between">
+    <div>
+      <h1 class="text-3xl font-black">{{ 'account.title' | translate }}</h1>
+      <p class="text-slate-500">{{ auth.user()?.name }} · {{ auth.user()?.email }}</p>
+    </div>
+    <button class="btn btn-secondary" (click)="logout()">{{ 'header.logout' | translate }}</button>
+  </div>
+  <div class="grid md:grid-cols-3 gap-5 mt-8">
+    <div class="card p-5">
+      <div class="text-slate-500">{{ 'account.orders' | translate }}</div>
+      <b class="text-2xl">{{ myOrders().length }}</b>
+    </div>
+    <div class="card p-5">
+      <div class="text-slate-500">{{ 'account.totalSpending' | translate }}</div>
+      <b class="text-2xl">{{ spent().toLocaleString('vi-VN') }} ₫</b>
+    </div>
+    <div class="card p-5">
+      <a routerLink="/products" class="text-[#3f61a8]"
+        >{{ 'cart.continueShopping' | translate }} →</a
+      >
+    </div>
+  </div>
+  <section class="mt-10">
+    <h2 class="text-xl font-black mb-4">{{ 'order.recent' | translate }}</h2>
+    <div class="card overflow-x-auto">
+      <table class="w-full text-sm">
+        <thead>
+          <tr class="text-left border-b">
+            <th class="p-4">{{ 'adminOrder.orderCode' | translate }}</th>
+            <th>{{ 'adminOrder.date' | translate }}</th>
+            <th>{{ 'adminOrder.total' | translate }}</th>
+            <th>{{ 'common.status' | translate }}</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr *ngFor="let o of myOrders()" class="border-b">
+            <td class="p-4">
+              <a class="text-[#3f61a8]" [routerLink]="['/account/orders', o.id]">{{
+                o.orderCode
+              }}</a>
+            </td>
+            <td>{{ o.createdAt | date }}</td>
+            <td>{{ o.total.toLocaleString('vi-VN') }} ₫</td>
+            <td>{{ 'order.' + o.status.toLowerCase() | translate }}</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </section>
+</div>

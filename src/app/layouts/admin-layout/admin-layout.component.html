@@ -1,0 +1,35 @@
+<div class="min-h-screen bg-slate-100 flex">
+  <aside class="hidden md:block w-64 bg-slate-900 text-white p-5">
+    <div class="text-xl font-black mb-8">{{ 'admin.storeAdmin' | translate }}</div>
+    <nav class="space-y-2">
+      <a class="block p-3 rounded hover:bg-slate-800" routerLink="/admin/dashboard">{{
+        'admin.dashboard' | translate
+      }}</a
+      ><a class="block p-3 rounded hover:bg-slate-800" routerLink="/admin/products">{{
+        'admin.products' | translate
+      }}</a
+      ><a class="block p-3 rounded hover:bg-slate-800" routerLink="/admin/categories">{{
+        'admin.categories' | translate
+      }}</a
+      ><a class="block p-3 rounded hover:bg-slate-800" routerLink="/admin/orders">{{
+        'admin.orders' | translate
+      }}</a
+      ><a class="block p-3 rounded hover:bg-slate-800" routerLink="/admin/customers">{{
+        'admin.customers' | translate
+      }}</a
+      ><a class="block p-3 rounded hover:bg-slate-800" routerLink="/">{{
+        'admin.storefront' | translate
+      }}</a>
+    </nav>
+  </aside>
+  <div class="flex-1">
+    <header class="h-16 bg-white border-b px-5 flex items-center justify-between">
+      <b>{{ 'admin.administration' | translate }}</b
+      ><button class="btn btn-secondary" (click)="logout()">
+        {{ 'header.logout' | translate }}
+      </button>
+    </header>
+    <app-breadcrumb />
+    <main class="p-4 md:p-8"><router-outlet /></main>
+  </div>
+</div>

@@ -1,0 +1,28 @@
+<article class="card overflow-hidden">
+  <a [routerLink]="['/products', product().id]"
+    ><img
+      class="w-full h-52 object-cover"
+      [src]="product().images[0]?.url"
+      [alt]="product().name"
+  /></a>
+  <div class="p-4">
+    <div class="text-xs text-slate-500">{{ product().categoryName }}</div>
+    <a [routerLink]="['/products', product().id]" class="font-bold block mt-1">{{
+      product().name
+    }}</a>
+    <div class="mt-2 font-black">
+      {{ (product().salePrice ?? product().price).toLocaleString('vi-VN') }} ₫
+      <del *ngIf="product().salePrice" class="text-xs text-slate-400 font-normal"
+        >{{ product().price.toLocaleString('vi-VN') }} ₫</del
+      >
+    </div>
+    <div class="flex justify-between items-center mt-3">
+      <span class="text-xs" [class.text-red-600]="product().stock < 5">{{
+        product().stock < 5
+          ? ('product.onlyLeft' | translate: { count: product().stock })
+          : ('product.inStock' | translate: { count: product().stock })
+      }}</span
+      ><button class="btn btn-primary text-sm" (click)="add()">{{ 'common.add' | translate }}</button>
+    </div>
+  </div>
+</article>
