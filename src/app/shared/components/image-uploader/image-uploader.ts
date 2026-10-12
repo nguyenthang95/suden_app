@@ -15,6 +15,7 @@ export interface ImageUploadItem {
   file?: File;
   url: string;
   fileName?: string;
+  productId?: string;
   isPrimary: boolean;
   sortOrder: number;
 }

@@ -1,7 +1,7 @@
 import { Order } from '../models/models';
 import { PRODUCTS } from './products.mock';
 import { CUSTOMERS } from './customers.mock';
-export const ORDERS: Order[] = Array.from({ length: 12 }, (_, i) => {
+export const ORDERS: Order[] = Array.from({ length: 1 }, (_, i) => {
   const p = PRODUCTS[i],
     qty = (i % 3) + 1,
     sub = (p.salePrice ?? p.price) * qty;

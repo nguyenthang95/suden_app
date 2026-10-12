@@ -31,6 +31,7 @@ export interface Product {
   price: number;
   salePrice?: number;
   stock: number;
+  shortDescription?: string;
   description: string;
   images: ImageUploadItem[];
   featured: boolean;

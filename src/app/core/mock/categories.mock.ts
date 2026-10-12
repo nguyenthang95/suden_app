@@ -1,79 +1,59 @@
 import { Category } from '../models/models';
-const now = '2026-10-02T10:00:00Z';
-const c = (id: string, name: string, parentId: string | null = null): Category => ({
-  id,
-  name,
-  slug: name.toLowerCase().replaceAll(' ', '-'),
-  parentId,
-  description: `Quality ${name.toLowerCase()} for your pets`,
-  imageUrl:
-    'https://images.unsplash.com/photo-1583337130417-3346a1be7dee?auto=format&fit=crop&w=600&q=80',
-  productCount: 0,
-  status: 'ACTIVE',
-  createdAt: now,
-  updatedAt: now,
-});
+
 export const CATEGORIES: Category[] = [
-  // c('cat-pet', 'Pet'),
-  // c('cat-dog', 'Dog', 'cat-pet'),
-  // c('cat-dog-food', 'Dog Food', 'cat-dog'),
-  // c('cat-dog-treats', 'Dog Treats', 'cat-dog'),
-  // c('cat-dog-toys', 'Dog Toys', 'cat-dog'),
-  // c('cat-dog-accessories', 'Dog Accessories', 'cat-dog'),
-  // c('cat-cat', 'Cat', 'cat-pet'),
-  // c('cat-cat-food', 'Cat Food', 'cat-cat'),
-  // c('cat-cat-treats', 'Cat Treats', 'cat-cat'),
-  // c('cat-cat-toys', 'Cat Toys', 'cat-cat'),
-  // c('cat-cat-accessories', 'Cat Accessories', 'cat-cat'),
-  // c('cat-grooming', 'Grooming'),
-  // c('cat-beds', 'Beds & Home'),
-
-  c('dog-food', 'Thức ăn cho chó'),
-  c('dog-food-mr-vet', 'MR-VET', 'dog-food'),
-  c('dog-food-royal-canin', 'Royal Canin', 'dog-food'),
-  c('dog-food-keos', 'KEOS', 'dog-food'),
-  c('dog-food-luv-care', 'Luv Care', 'dog-food'),
-  c('dog-food-zenith', 'Zenith', 'dog-food'),
-  c('dog-food-dog-smile', 'Dog Smile', 'dog-food'),
-  c('dog-food-smart-heart', 'Smart Heart', 'dog-food'),
-  c('dog-food-ganador', 'Ganador', 'dog-food'),
-  c('dog-food-caption', 'Caption', 'dog-food'),
-  c('dog-food-fib', 'FIB', 'dog-food'),
-
-
-  c('cat-food', 'Thức ăn cho mèo'),
-  c('cat-food-mr-vet', 'MR-VET', 'cat-food'),
-  c('cat-food-royal-canin', 'Royal Canin', 'cat-food'),
-  c('cat-food-keos', 'KEOS', 'cat-food'),
-  c('cat-food-catpy', 'CatPy', 'cat-food'),
-  c('cat-food-pet-bite', 'Pet Bite Cat Food', 'cat-food'),
-  c('cat-food-today-dinner', "Today's Dinner", 'cat-food'),
-  c('cat-food-s2-pet', 'S2 PET', 'cat-food'),
-  c('cat-food-felipro', 'Felipro', 'cat-food'),
-  c('cat-food-kitten-cat', 'Kitten Cat - Cat eyes', 'cat-food'),
-  c('cat-food-fib', 'FIB', 'cat-food'),
-
-  c('dog-pate', 'Pate cho chó'),
-  c('dog-pate-mr-vet', 'MR-VET', 'dog-pate'),
-  c('dog-pate-royal-canin', 'Royal Canin', 'dog-pate'),
-
-  c('cat-pate', 'Pate cho mèo'),
-  c('cat-pate-mr-vet', 'MR-VET', 'cat-pate'),
-  c('cat-pate-royal-canin', 'Royal Canin', 'cat-pate'),
-
-  c('dog-toys', 'Phụ kiện cho chó'),
-  c('dog-toys-mr-vet', 'MR-VET', 'dog-toys'),
-  c('dog-toys-royal-canin', 'Royal Canin', 'dog-toys'),
-
-  c('cat-toys', 'Phụ kiện cho mèo'),
-  c('cat-toys-mr-vet', 'MR-VET', 'cat-toys'),
-  c('cat-toys-royal-canin', 'Royal Canin', 'cat-toys'),
-
-  c('dog-accessories', 'Phụ kiện cho chó'),
-  c('dog-accessories-mr-vet', 'MR-VET', 'dog-accessories'),
-  c('dog-accessories-royal-canin', 'Royal Canin', 'dog-accessories'),
-
-  c('cat-accessories', 'Phụ kiện cho mèo'),
-  c('cat-accessories-mr-vet', 'MR-VET', 'cat-accessories'),
-  c('cat-accessories-royal-canin', 'Royal Canin', 'cat-accessories'),
+  // =========================
+  // DOG FOOD
+  // =========================
+  {
+    id: 'dog-food',
+    name: 'Hạt cho chó',
+    slug: 'hat-cho-cho',
+    parentId: null,
+    description: 'Thức ăn hạt khô dành cho chó ở nhiều độ tuổi.', 
+    imageUrl:
+      'https://fexafkqzpbzjcupvbfhe.supabase.co/storage/v1/object/public/product-images/blog/bec8d49b-9c80-4aed-9959-9e300413ad92/3b8d7a8d6c6af6df.png?auto=format&fit=crop&w=600&q=80',
+    productCount: 1,
+    status: 'ACTIVE',
+    createdAt: '2026-10-02T10:00:00Z',
+    updatedAt: '2026-10-02T10:00:00Z',
+  },
+  {
+    id: 'dog-food-mr-vet',
+    name: 'MR-VET Cho Chó',
+    slug: 'mr-vet-cho-cho',
+    parentId: 'dog-food',
+    description: 'Thức ăn cho chó hãng MR-VET.', 
+    imageUrl:
+      'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQcI8WCMAt3Ywwfym7AjW0rWAc-j943oOSwiBN0MgmMEQ&s=10?auto=format&fit=crop&w=600&q=80',
+    productCount: 1,
+    status: 'ACTIVE',
+    createdAt: '2026-10-02T10:00:00Z',
+    updatedAt: '2026-10-02T10:00:00Z',
+  },
+  {
+    id: 'cat-food',
+    name: 'Hạt cho mèo',
+    slug: 'hat-cho-meo',
+    parentId: null,
+    description: 'Thức ăn hạt khô dành cho mèo ở nhiều độ tuổi.', 
+    imageUrl:
+      'https://kinpetshop.com/wp-content/uploads/hat-cho-meo-con.jpg?auto=format&fit=crop&w=600&q=80',
+    productCount: 6,
+    status: 'ACTIVE',
+    createdAt: '2026-10-02T10:00:00Z',
+    updatedAt: '2026-10-02T10:00:00Z',
+  },
+  {
+    id: 'cat-food-mr-vet',
+    name: 'MR-VET Cho Mèo',
+    slug: 'mr-vet-cho-meo',
+    parentId: 'cat-food',
+    description: 'Thức ăn cho mèo hãng MR-VET.', 
+    imageUrl:
+      'https://congnghemayphuthinh.vn/wp-content/uploads/2021/12/thuc-an-cho-cho-meo.jpg?auto=format&fit=crop&w=600&q=80',
+    productCount: 6,
+    status: 'ACTIVE',
+    createdAt: '2026-10-02T10:00:00Z',
+    updatedAt: '2026-10-02T10:00:00Z',
+  },
 ];

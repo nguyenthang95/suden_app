@@ -10,14 +10,15 @@
             <div class="text-sm text-slate-500">{{ x.price.toLocaleString('vi-VN') }} ₫</div>
           </div>
           <input
-            class="input w-20"
+            class="input w-[70px!important]"
             type="number"
             min="1"
             [max]="x.product.stock"
             [value]="x.quantity"
             (input)="onSetQuantity(x.productId, +$any($event.target).value)"
-          /><b>{{ x.subtotal.toLocaleString('vi-VN') }} ₫</b
-          ><button class="text-red-600" (click)="onRemove(x.productId)">
+          />
+          <b>{{ x.subtotal.toLocaleString('vi-VN') }} ₫</b>
+          <button class="text-red-600" (click)="onRemove(x.productId)">
             {{ 'cart.remove' | translate }}
           </button>
         </div>

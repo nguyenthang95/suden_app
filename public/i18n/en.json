@@ -62,7 +62,7 @@
     "description": "Simple, fast, and convenient online shopping. Discover thousands of products with great deals.",
     "securePaymentLabel": "Secure payment",
     "privacyLabel": "Your information is protected",
-    "address": "123 Nguyen Van A, Da Nang, Vietnam"
+    "address": "1140A, Group 7, Truong Chinh Street, An Khe Ward, Da Nang City"
   },
 
   "breadcrumb": {
@@ -332,6 +332,6 @@
     "next": "Next",
     "paymentCod": "Cash on delivery",
     "paymentBankTransfer": "Bank transfer",
-    "shippingCost": "30,000 ₫"
+    "shippingCost": "0 VND"
   }
 }

@@ -62,7 +62,7 @@
     "description": "Mua sắm trực tuyến đơn giản, nhanh chóng và tiện lợi. Khám phá hàng nghìn sản phẩm với nhiều ưu đãi hấp dẫn.",
     "securePaymentLabel": "Thanh toán an toàn",
     "privacyLabel": "Bảo mật thông tin",
-    "address": "123 Nguyễn Văn A, Đà Nẵng, Việt Nam"
+    "address": "1140A tổ 7 đường Trường Chinh, Phường An Khê, TP. Đà Nẵng"
   },
 
   "breadcrumb": {
@@ -332,6 +332,6 @@
     "next": "Tiếp",
     "paymentCod": "Thanh toán khi nhận hàng",
     "paymentBankTransfer": "Chuyển khoản ngân hàng",
-    "shippingCost": "30.000 ₫"
+    "shippingCost": "0 đ"
   }
 }

@@ -25,7 +25,7 @@
         {{ (p.salePrice ?? p.price).toLocaleString('vi-VN') }} ₫
       </div>
       <del *ngIf="p.salePrice" class="text-slate-400">{{ p.price.toLocaleString('vi-VN') }} ₫</del>
-      <p class="text-slate-600 leading-7 mt-6">{{ p.description }}</p>
+      <p class="text-slate-600 leading-7 mt-6">{{ p.shortDescription }}</p>
       <div class="flex items-center gap-3 mt-8">
         <input
           class="input w-24"
@@ -45,6 +45,7 @@
       </div>
     </div>
   </div>
+  <div class="grid lg:grid-cols-1 gap-10 pt-5" [innerHTML]="p.description"></div>
   <section class="mt-14">
     <h2 class="text-2xl font-black mb-5">{{ 'product.relatedProducts' | translate }}</h2>
     <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-5">

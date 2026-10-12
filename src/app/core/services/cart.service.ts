@@ -6,7 +6,7 @@ import { StorageService } from './storage.service';
 export class CartService {
   cartCount = computed(() => this.items().reduce((n, x) => n + x.quantity, 0));
   cartSubtotal = computed(() => this.items().reduce((n, x) => n + x.subtotal, 0));
-  cartTotal = computed(() => this.cartSubtotal() + (this.cartSubtotal() ? 30000 : 0));
+  cartTotal = computed(() => this.cartSubtotal() + (this.cartSubtotal() ? 0 : 0));
   private items = signal<CartItem[]>([]);
   cartItems = this.items.asReadonly();
 
